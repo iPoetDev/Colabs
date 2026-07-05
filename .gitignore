@@ -1,0 +1,26 @@
+# Python / uv
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.uv/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Environments / secrets
+.env
+.env.*
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+
+# AI chat logs & personal notes (not part of the tutorial)
+.ai-chats/
+.waylog/
+.notes/
+
+# VS Code workspace-local state
+.vscode/

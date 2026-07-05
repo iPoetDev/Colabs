@@ -1,0 +1,38 @@
+[project]
+name = "colabs"
+version = "0.1.0"
+description = "Local Python environment for Google Colab notebook parity, managed by uv."
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "ipykernel>=6.29",
+    "ipywidgets>=8.1",
+    "jupyterlab>=4.2",
+    "matplotlib>=3.9.2",
+    "notebook>=7.2",
+    "numpy>=2.1",
+    "pandas>=2.2.3",
+]
+
+# Non-packaged (virtual) project: uv manages the environment but never builds/installs
+# this directory as a distributable package, so no src/ layout or build backend is required.
+[tool.uv]
+package = false
+# The uv cache (on C:) and this project's .venv (on D:) are on different filesystems,
+# so hardlinking is unsupported. "copy" mode avoids the hardlink-fallback warning.
+link-mode = "copy"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.6",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+# Lint and format Jupyter notebook cells alongside .py files.
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+# Conservative, notebook-friendly rule set — no aggressive opinionated rules.
+# E/W pycodestyle, F pyflakes, I isort, UP pyupgrade, B flake8-bugbear.
+select = ["E", "F", "I", "W", "UP", "B"]
